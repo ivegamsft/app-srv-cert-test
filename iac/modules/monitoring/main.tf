@@ -131,9 +131,9 @@ resource "azurerm_monitor_diagnostic_setting" "keyvault" {
     category = "AuditEvent"
   }
 
-  metric {
+  # Metrics: enable the default metrics category via the new block
+  enabled_metric {
     category = "AllMetrics"
-    enabled  = true
   }
 }
 
@@ -155,8 +155,8 @@ resource "azurerm_monitor_diagnostic_setting" "appgw" {
     category = "ApplicationGatewayFirewallLog"
   }
 
-  metric {
+  # Metrics: enable the default metrics category via the new block
+  enabled_metric {
     category = "AllMetrics"
-    enabled  = true
   }
 }

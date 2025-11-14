@@ -53,9 +53,6 @@ resource "azurerm_linux_web_app" "main" {
     "APPINSIGHTS_INSTRUMENTATIONKEY"        = var.app_insights_instrumentation_key != "" ? var.app_insights_instrumentation_key : null
     "APPLICATIONINSIGHTS_CONNECTION_STRING" = var.app_insights_connection_string != "" ? var.app_insights_connection_string : null
     
-    # Security Headers
-    "WEBSITE_HTTPLOGGING_RETENTION_DAYS" = "7"
-    
     # Performance
     "WEBSITE_TIME_ZONE" = "UTC"
   }
@@ -78,6 +75,12 @@ resource "azurerm_linux_web_app" "main" {
       }
     }
   }
+}
+
+# VNet integration (Swift) for outbound access to private endpoints (Key Vault)
+resource "azurerm_app_service_virtual_network_swift_connection" "integration" {
+  app_service_id = azurerm_linux_web_app.main.id
+  subnet_id      = var.integration_subnet_id
 }
 
 # DNS CNAME record for custom domain

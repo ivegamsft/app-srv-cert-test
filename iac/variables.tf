@@ -89,3 +89,13 @@ variable "tags" {
     ManagedBy = "Terraform"
   }
 }
+
+# Management workstation public IP (CIDR /32) used to temporarily allow Key Vault access for Terraform
+# when public network access is enabled but firewall default action is Deny.
+variable "management_ip" {
+  description = "Public IP (e.g. 47.206.222.73/32) allowed to access Key Vault during Terraform operations"
+  type        = string
+  default     = ""
+}
+
+

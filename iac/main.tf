@@ -67,6 +67,11 @@ module "key_vault" {
   vm_admin_username   = random_string.vm_admin_username.result
   vm_admin_password   = random_password.vm_admin.result
   tags                = var.tags
+  subnet_id           = module.networking.appgw_subnet_id
+  private_endpoint_subnet_id = module.networking.private_endpoint_subnet_id
+  vnet_id             = module.networking.vnet_id
+  management_ip       = var.management_ip
+  vm_subnet_id        = module.networking.vm_subnet_id
 }
 
 # DNS Zone for custom domain - Use existing zone from rg-core-services
@@ -90,6 +95,7 @@ module "app_service" {
   enable_custom_domain = var.enable_custom_domain
   dns_zone_id         = data.azurerm_dns_zone.main.id
   key_vault_id        = module.key_vault.key_vault_id
+  integration_subnet_id = module.networking.app_service_integration_subnet_id
   tags                = var.tags
 
   depends_on = [module.key_vault]

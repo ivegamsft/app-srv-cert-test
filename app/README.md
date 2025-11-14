@@ -38,6 +38,15 @@ npm run dev
 
 Visit `http://localhost:3000`
 
+## Environment Variables
+
+- `PORT`: The port on which the application runs (default: `3000`).
+
+## Notes
+
+- Ensure that the Azure App Service is configured to use Node.js runtime version `18-lts`.
+- Refer to the `package.json` file for additional scripts and dependencies.
+
 ## Endpoints
 
 - `GET /` - Homepage
@@ -80,13 +89,6 @@ git push azure main
 1. Create `.github/workflows/deploy.yml`
 2. Add publish profile secret to GitHub repository
 3. Push to trigger deployment
-
-## Environment Variables
-
-Set these in Azure App Service Configuration:
-
-- `NODE_ENV` - Set to `production`
-- `PORT` - Automatically set by Azure (default: 8080)
 
 ## Monitoring
 

@@ -18,6 +18,16 @@ output "vm_subnet_id" {
   value       = azurerm_subnet.vm.id
 }
 
+output "private_endpoint_subnet_id" {
+  description = "ID of the Private Endpoint subnet"
+  value       = azurerm_subnet.pe.id
+}
+
+output "app_service_integration_subnet_id" {
+  description = "ID of the App Service integration subnet"
+  value       = azurerm_subnet.appsvc.id
+}
+
 output "appgw_public_ip_id" {
   description = "ID of the Application Gateway public IP"
   value       = azurerm_public_ip.appgw.id

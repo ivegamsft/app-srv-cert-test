@@ -13,6 +13,7 @@ resource "azurerm_subnet" "appgw" {
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefixes     = ["10.0.1.0/24"]
+  service_endpoints    = ["Microsoft.KeyVault"]
 }
 
 # Subnet for Virtual Machines
@@ -21,6 +22,31 @@ resource "azurerm_subnet" "vm" {
   resource_group_name  = var.resource_group_name
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefixes     = ["10.0.2.0/24"]
+  service_endpoints    = ["Microsoft.KeyVault"]
+}
+
+# Subnet for Private Endpoints (Key Vault)
+resource "azurerm_subnet" "pe" {
+  name                 = "snet-pe"
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.main.name
+  address_prefixes     = ["10.0.3.0/27"]
+}
+
+# Subnet for App Service VNet Integration
+resource "azurerm_subnet" "appsvc" {
+  name                 = "snet-appsvc"
+  resource_group_name  = var.resource_group_name
+  virtual_network_name = azurerm_virtual_network.main.name
+  address_prefixes     = ["10.0.4.0/27"]
+
+  delegation {
+    name = "dlg-appsvc"
+    service_delegation {
+      name    = "Microsoft.Web/serverFarms"
+      actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+    }
+  }
 }
 
 # Network Security Group for Application Gateway

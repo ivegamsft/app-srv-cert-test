@@ -71,3 +71,8 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "integration_subnet_id" {
+  description = "Subnet ID for App Service VNet integration"
+  type        = string
+}

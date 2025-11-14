@@ -81,12 +81,13 @@ resource "azurerm_application_gateway" "main" {
   probe {
     name                = local.probe_name
     protocol            = "Http"
-    path                = "/"
+    path                = "/health"
+    host                = "127.0.0.1"
     interval            = 30
     timeout             = 30
     unhealthy_threshold = 3
-    host                = "127.0.0.1"
-    
+    pick_host_name_from_backend_http_settings = false
+
     match {
       status_code = ["200-399"]
     }
