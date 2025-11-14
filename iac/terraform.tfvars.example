@@ -1,0 +1,35 @@
+# Copy this file to terraform.tfvars and update with your values
+
+# General Configuration
+location     = "westeurope"
+environment  = "dev"
+project_name = "webapp"
+
+# Domain Configuration
+domain_name   = "example.com"      # Replace with your domain
+app_subdomain = "app"              # App Service will be at app.example.com
+vm_subdomain  = "api"              # VM will be at api.example.com
+
+# App Service Configuration
+app_service_sku_name = "S1"
+app_service_runtime  = "NODE|18-lts"  # Options: NODE|18-lts, DOTNET|6.0, PYTHON|3.11
+
+# Virtual Machine Configuration
+vm_size = "Standard_DS2_v2"
+# Note: VM admin username and password are auto-generated for security
+
+# Application Gateway Configuration
+app_gateway_sku_name = "Standard_v2"
+app_gateway_capacity = 2
+
+# Monitoring Configuration
+# Note: Alert email is auto-derived as alerts@{your-domain-name}
+ssl_expiry_alert_days = [30, 14, 7]
+
+# Tags
+tags = {
+  ManagedBy   = "Terraform"
+  Environment = "Development"
+  Project     = "WebApp"
+  CostCenter  = "IT"
+}
