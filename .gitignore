@@ -31,6 +31,23 @@ Thumbs.db
 .env.*
 .env.local
 *.publishsettings
+# Common secret/config files
+secrets.*
+secret.*
+*.secret
+*.secrets
+*.credentials
+credentials.*
+
+# Private key / certificate material (never commit)
+*.pem
+*.key
+*.crt
+*.cer
+*.pfx
+*.jks
+*.keystore
+*.asc
 
 # Build artifacts
 dist/
