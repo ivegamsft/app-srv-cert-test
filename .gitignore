@@ -1,32 +1,46 @@
-# Git ignore file
+# Git ignore file (expanded)
 .terraform/
 *.tfstate
 *.tfstate.*
-.tfvars
+*.tfvars
+terraform.tfvars.json
 *.backup
 tfplan
 .terraform.lock.hcl
+crash.log
+crash.*.log
 
 # Node
 node_modules/
-npm-debug.log
+npm-debug.log*
 *.log
+coverage/
 
 # OS
 .DS_Store
 Thumbs.db
 
-# IDE
+# IDE / Editor
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# Environment
+# Environment / Secrets
 .env
+.env.*
 .env.local
+*.publishsettings
 
-# Build
+# Build artifacts
 dist/
 build/
 deploy.zip
+
+# Archives
+*.zip
+*.tar.gz
+
+# Generated docs / test outputs that shouldn't be committed
+apply-log.txt
+TEST_RESULTS.md
