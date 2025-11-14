@@ -104,7 +104,7 @@ Write-Host "Step 4: Add GitHub Secret" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "1. Go to your GitHub repository" -ForegroundColor White
-Write-Host "2. Navigate to Settings > Secrets and variables > Actions" -ForegroundColor White
+Write-Host "2. Navigate to Settings, then Secrets and variables, then Actions" -ForegroundColor White
 Write-Host "3. Click 'New repository secret'" -ForegroundColor White
 Write-Host "4. Name: AZURE_WEBAPP_PUBLISH_PROFILE" -ForegroundColor Green
 Write-Host "5. Value: (paste the XML from above)" -ForegroundColor Green

@@ -155,25 +155,3 @@ module "monitoring" {
 
   depends_on = [module.app_service, module.app_gateway, module.key_vault]
 }
-
-# App Service Module (needs monitoring outputs)
-module "app_service" {
-  source = "./modules/app-service"
-
-  resource_group_name = azurerm_resource_group.main.name
-  location            = azurerm_resource_group.main.location
-  prefix              = random_string.prefix.result
-  project_name        = var.project_name
-  environment         = var.environment
-  sku_name            = var.app_service_sku_name
-  runtime_stack       = var.app_service_runtime
-  custom_domain       = "${var.app_subdomain}.${var.domain_name}"
-  enable_custom_domain = var.enable_custom_domain
-  dns_zone_id         = data.azurerm_dns_zone.main.id
-  key_vault_id        = module.key_vault.key_vault_id
-  app_insights_instrumentation_key = module.monitoring.application_insights_instrumentation_key
-  app_insights_connection_string   = module.monitoring.application_insights_connection_string
-  tags                = var.tags
-
-  depends_on = [module.key_vault, module.monitoring]
-}
